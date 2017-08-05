@@ -2,6 +2,7 @@ group 'edu.pucmm'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+//agregar el plugin de aplicación.
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
