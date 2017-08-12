@@ -37,8 +37,10 @@ public class Main {
             String salida = "";
             while (rs.next()) {
                 //output.add("Read from DB: " + rs.getTimestamp("tick"));
-                salida+="Read from DB: " + rs.getTimestamp("tick")+"\n";
+                salida+="Read from DB: " + rs.getTimestamp("tick")+"<br/>";
             }
+            
+            connection.close();
 
             return salida;
         });
