@@ -54,8 +54,8 @@ public class Main {
     
      static String getUrlBaseDatos() {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        if (processBuilder.environment().get("DATABASE_URL") != null) {
-            return processBuilder.environment().get("DATABASE_URL");
+        if (processBuilder.environment().get("JDBC_DATABASE_URL") != null) {
+            return processBuilder.environment().get("JDBC_DATABASE_URL");
         }
         return ""; //En caso de no pasar la información, toma el puerto 4567
     }
