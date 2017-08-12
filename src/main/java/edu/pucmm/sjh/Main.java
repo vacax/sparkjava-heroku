@@ -12,8 +12,10 @@ import static spark.Spark.*;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
+        Class.forName("org.postgresql.Driver").newInstance();
+        
         //indicando el puerto de Spark,
         port(getPuertoHeroku());
 
@@ -22,9 +24,7 @@ public class Main {
             return "Hola Mundo Heroku - Laptop Camacho";
         });
 
-        get("/creartabla", (request, response) -> {
-
-            Class.forName("org.postgresql.Driver");
+        get("/creartabla", (request, response) -> {            
             
             Connection connection = DriverManager.getConnection(getUrlBaseDatos());
             
