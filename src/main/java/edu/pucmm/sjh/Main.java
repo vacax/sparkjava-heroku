@@ -24,6 +24,8 @@ public class Main {
 
         get("/creartabla", (request, response) -> {
 
+            Class.forName("org.postgresql.Driver");
+            
             Connection connection = DriverManager.getConnection(getUrlBaseDatos());
             
             Statement stmt = connection.createStatement();
