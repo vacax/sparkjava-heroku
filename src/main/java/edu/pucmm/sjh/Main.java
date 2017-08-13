@@ -26,21 +26,19 @@ public class Main {
 
         get("/creartabla", (request, response) -> {            
             
-            Connection connection = DriverManager.getConnection(getUrlBaseDatos());
-            
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-            stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-            ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-            //ArrayList<String> output = new ArrayList<String>();
             String salida = "";
-            while (rs.next()) {
-                //output.add("Read from DB: " + rs.getTimestamp("tick"));
-                salida+="Read from DB: " + rs.getTimestamp("tick")+"<br/>";
+            try (Connection connection = DriverManager.getConnection(getUrlBaseDatos())) {
+                Statement stmt = connection.createStatement();
+                stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+                stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+                ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+                //ArrayList<String> output = new ArrayList<String>();
+                salida = "";
+                while (rs.next()) {
+                    //output.add("Read from DB: " + rs.getTimestamp("tick"));
+                    salida+="Read from DB: " + rs.getTimestamp("tick")+"<br/>";
+                }
             }
-            
-            connection.close();
 
             return salida;
         });
